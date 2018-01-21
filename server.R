@@ -115,7 +115,8 @@ shinyServer(function(input, output) {
       }
     p <-   ggplot(filtered(), aes(price,points,
                                   color = country,
-                                  shape = variety)) +
+                                  shape = variety,
+                                  name = title)) +
         geom_point(show.legend=F)
     ggplotly(p)
     

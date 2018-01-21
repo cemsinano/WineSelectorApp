@@ -1,0 +1,10 @@
+library("shiny")
+library("shinyjs")
+library("tidyverse")
+library("plotly")
+library("shinydashboard")
+library("DT")
+library("countrycode")
+#library("foreign")
+
+wineData <- read.csv("./data/winemag-data-130k-v2.csv")

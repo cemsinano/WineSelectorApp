@@ -3,11 +3,16 @@
 shinyUI(dashboardPage(
   dashboardHeader(title = "Wine Selector App"),
   dashboardSidebar(
-    selectInput("tasterInput", "Taster Name",
-                choices = unique(as.character(wineData$taster_name)),
-                selected = c("Mike DeSimone","Lauren Buzzeo"),
-                multiple = TRUE),
     
+   sidebarMenu(
+      menuItem("Home", tabName = "tabItem1", icon = icon("th")),
+      menuItem("About", tabName = "tabItem2", icon = icon("dashboard"))
+    ),
+  #  selectInput("tasterInput", "Taster Name",
+  #             choices = unique(as.character(wineData$taster_name)),
+  #              selected = c("Mike DeSimone","Lauren Buzzeo"),
+  #              multiple = TRUE),
+
     sliderInput("priceInput", "Price Range",
                 min = 0, max = 1000, 
                 value = c(10, 60),
@@ -21,45 +26,59 @@ shinyUI(dashboardPage(
                 step = 1,
                 pre = ""
     ),
-    selectInput("varietyInput", "variety",
+    selectInput("varietyInput", "Variety",
                 choices = unique(as.character(wineData$variety)),
                 selected = c("Syrah","White Blend"),
                 multiple = TRUE)
   
   ),
+  
   dashboardBody(
     # Boxes need to be put in a row (or column)
-    fluidRow(
-      box(title = "Scores vs Price",
-          width = 350,
-          collapsible = TRUE,
-          plotlyOutput("coolplot")),
+    tabItems(
       
-      
-      box(title = "Country vs Variety",
-          width = 350,
-          collapsible = TRUE,
-          plotlyOutput("Secondplot"))
-    ,   
-   
-      box(
-        title = "Results",
-        width = 350,
-        collapsible = TRUE,
-        #tableOutput("results")
-        DT::dataTableOutput("results")
-      ),
-      box(
-      width = 350,
-      title = "World Map",
-      collapsible = TRUE,
-     plotlyOutput("MapPlot")
-      )
-     )
+      tabItem(tabName = "tabItem1",
+            fluidRow(
+              box(title = "Scores vs Price",
+                  width = 350,
+                  collapsible = TRUE,
+                  plotlyOutput("coolplot")),
+              
+              
+              box(title = "Country vs Variety",
+                  width = 350,
+                  collapsible = TRUE,
+                  plotlyOutput("Secondplot"))
+            ,   
+           
+              box(
+                title = "Results",
+                width = 350,
+                collapsible = TRUE,
+                #tableOutput("results")
+                DT::dataTableOutput("results")
+              ),
+              box(
+              width = 350,
+              title = "World Map",
+              collapsible = TRUE,
+             plotlyOutput("MapPlot")
+              )
+             )
     
+  ),
+  
+  tabItem(tabName = "tabItem2",
+          #tabPanel("Intro",
+                   includeMarkdown("about.md"),
+                   # imageOutput("crime.png")
+                   hr()
+          
+          
   )
+    )
 ))
-
+)
 
 
 

@@ -8,3 +8,5 @@ library("countrycode")
 #library("foreign")
 
 wineData <- read.csv("./data/winemag-data-130k-v2.csv")
+
+unique(wineData$variety)

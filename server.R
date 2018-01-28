@@ -25,7 +25,7 @@ wineData <- wineData %>% mutate(code  = countrycode(country, 'country.name', 'is
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
   
-   
+
   output$countryOutput <- renderUI({
     selectInput("countryInput", "Country",
                 sort(unique(wineData$country)),
@@ -103,8 +103,8 @@ shinyServer(function(input, output) {
                country %in% input$countryInput,
                variety %in% input$varietyInput,
                points  >= input$pointsInput[1],
-               points <= input$pointsInput[2],
-               taster_name %in% input$tasterInput
+               points <= input$pointsInput[2]
+              # ,taster_name %in% input$tasterInput
         )
    #   }
     })
@@ -113,11 +113,14 @@ shinyServer(function(input, output) {
       if (is.null(filtered())) {
        return()
       }
+    d <- data.frame(p=c(0:25,32:127))
     p <-   ggplot(filtered(), aes(price,points,
                                   color = country,
                                   shape = variety,
                                   name = title)) +
-        geom_point(show.legend=F)
+        geom_point(show.legend=F) +
+        scale_shape_discrete(solid=F)+
+      theme_bw()
     ggplotly(p)
     
     })
@@ -127,7 +130,8 @@ shinyServer(function(input, output) {
         return()
       }
       p <-   ggplot(filtered(), aes(x = country)) +
-        geom_bar(aes(fill = variety), show.legend=F) 
+        geom_bar(aes(fill = variety), show.legend=F) +
+        theme_bw()
       ggplotly(p)
       
       

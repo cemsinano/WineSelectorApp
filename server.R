@@ -119,7 +119,7 @@ shinyServer(function(input, output) {
                                   shape = variety,
                                   name = title)) +
         geom_point(show.legend=F) +
-        scale_shape_discrete(solid=F)+
+        scale_shape_discrete(solid=F) +
       theme_bw()
     ggplotly(p)
     
@@ -130,7 +130,7 @@ shinyServer(function(input, output) {
         return()
       }
       p <-   ggplot(filtered(), aes(x = country)) +
-        geom_bar(aes(fill = variety), show.legend=F) +
+        geom_bar(aes(fill = variety), show.legend=F)+
         theme_bw()
       ggplotly(p)
       

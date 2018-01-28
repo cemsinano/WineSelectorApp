@@ -6,7 +6,7 @@ shinyUI(dashboardPage(
     
    sidebarMenu(
       menuItem("Home", tabName = "tabItem1", icon = icon("th")),
-      menuItem("About", tabName = "tabItem2", icon = icon("dashboard"))
+      menuItem("About", tabName = "tabItem2", icon = icon("th"))
     ),
   #  selectInput("tasterInput", "Taster Name",
   #             choices = unique(as.character(wineData$taster_name)),
@@ -69,12 +69,8 @@ shinyUI(dashboardPage(
   ),
   
   tabItem(tabName = "tabItem2",
-          #tabPanel("Intro",
-                   includeMarkdown("about.md"),
-                   # imageOutput("crime.png")
+                   includeMarkdown("./about.md"),
                    hr()
-          
-          
   )
     )
 ))

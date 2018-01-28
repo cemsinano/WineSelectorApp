@@ -18,11 +18,13 @@ The dataset has been taken from [Kaggle Wine Reviews Data](https://www.kaggle.co
 ## App Appearance:
 
 
-![](fig/plot1.png)
+![](fig/about.png)
 
-![](fig/plot2.png)
+![](fig/sp2.png)
 
-![](fig/table.png)
+![](fig/cv2.png)
+
+![](fig/table1.png)
 
 ![](fig/map.png)
 
